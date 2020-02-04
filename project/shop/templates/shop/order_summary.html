@@ -1,0 +1,62 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+
+<div class="container text-center text-secondary">
+  <div class="features text-secondary">
+    <h1>Your orders</h1>
+  </div>
+</div>
+
+{% for object in objects %}
+
+<div class="container-fluid sofa bg-light text-secondary">
+  <div class="row">
+    <div class="col-md-4 col-12 text-center pt-5">
+      Order Number  -  {{ forloop.counter }} Date: {{ object.ordered_date.month }}-{{ object.ordered_date.day }}-{{ object.ordered_date.year }}
+    </div>
+    {% for item in object.items.all %}
+    <div>
+      <div class="col-md-2 col-12">
+        <div class="row">
+          <div class="col-md-2 p-0 pl-md-3 bg-light pt-5 text-center">
+            {{ forloop.counter }}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-12 pt-5 text-center">
+        <h4 class="text-center">{{ item.item.title }}</h4>
+
+        <h4 class="pt-2">
+          <span class="text-secondary">Price ${{ item.item.price }}</span>
+        </h4>
+        <h4 class="pt-2">
+          <span class="text-secondary">Quantity {{ item.quantity }} ps.</span>
+        </h4>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="col-12 bg-white pt-5"></div>
+  </div>
+</div>
+
+
+{% empty %}
+<div class="container text-center">
+  <div class="features">
+    <p class="text-secondary">
+      Sorry, no orders in this list.
+    </p>
+  </div>
+</div>
+
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}

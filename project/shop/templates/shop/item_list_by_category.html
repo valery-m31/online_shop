@@ -1,0 +1,78 @@
+{% extends 'shop/base.html' %}
+
+
+{% block content %}
+
+
+<div class="container text-center">
+  <div class="features">
+    <h1>{{ category }}</h1>
+    <p class="text-secondary">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="site-slider-three px-md-4">
+    <div class="three row text-center px-4">
+      {% for item in items_by_category %}
+      <div class="col-md-3 product pt-md-5">
+        <img src="{{ item.image.url }}" class="img-fluid" alt="Image_1">
+        <div class="cart-details">
+          <h6 class="pro-title p-0">{{ item.title }}</h6>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="pro-price py-2">
+            {% if item.discount_price %}
+            <h5>
+              <small><s class="text-secondary">${{ item.price }}</s></small>
+              <span>${{ item.discount_price }}</span>
+            </h5>
+            {% else %}
+            <h5>
+              <span>${{ item.price }}</span>
+            </h5>
+            {% endif %}
+          </div>
+          <div class="cart mt-4">
+            <button class="border site-btn btn-span" onclick="window.location.href = '{% url 'item-detail' item.slug %}';">Detail</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-12 text-center my-md-4"></div>
+    <div class="col-md-4 col-12 text-center my-md-4">
+      <div class="pagination">
+        <span class="step-links">
+          {% if items_by_category.has_previous %}
+          <a href="?page=1">&laquo;</a>
+          <a href="?page={{ items_by_category.previous_page_number }}">Previous</a>
+          {% endif %}
+          <span class="current text-secondary">
+            Page {{ items_by_category.number }} of {{ items_by_category.paginator.num_pages }}.
+          </span>
+          {% if items_by_category.has_next %}
+          <a class="" href="?page={{ items_by_category.next_page_number }}">Next</a>
+          <a href="?page={{ items_by_category.paginator.num_pages }}">&raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 text-center my-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}

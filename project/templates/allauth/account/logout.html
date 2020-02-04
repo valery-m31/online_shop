@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+<title>Log Out</title>
+
+
+<div class='container col-6'>
+  <br>
+  <h4 class="text-secondary">Are you sure you want to logout?</h4>
+  <br>
+  <form action="/accounts/logout/" method='post'>
+    {% csrf_token %}
+    <button type="submit" class="btn bg-primary-color text-white">Logout</button>
+  </form>
+  <div id="rasporka-log">
+
+  </div>
+</div>
+
+{% endblock %}

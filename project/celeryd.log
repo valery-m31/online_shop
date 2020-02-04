@@ -1,0 +1,32 @@
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+usage: celery worker [options] 
+celery: error: unrecognized arguments: — app=project
+Error: 
+Unable to load celery application.
+The module project was not found.
+
+Error: 
+Unable to load celery application.
+The module project was not found.
+
+Error: 
+Unable to load celery application.
+The module project was not found.
+
+Error: 
+Unable to load celery application.
+The module project was not found.
+

@@ -1,0 +1,88 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+  <div class="features text-secondary">
+    <h1>Cart</h1>
+  </div>
+</div>
+
+{% for item in order_item %}
+
+<div class="container-fluid sofa bg-light">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div class="row box">
+        <div class="col-md-2 p-0 pl-md-3 bg-light offset-1 d-flex flex-md-column flex-sm-row"></div>
+        <div class="col-md-8 p-0 bg-light">
+          <div class="text-left">
+            <img src="{{ item.item.image.url }}" alt={{ item.item.title }} class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 pt-5">
+      <h4 class="text-left text-secondary">{{ item.item.title }}</h4>
+      <div class="rating lightblue">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <div class="col-sm-3"></div>
+      {% if item.item.discount_price %}
+      <h4 class="pt-2">
+        <span class="text-secondary">Price ${{ item.item.discount_price }}</span>
+      </h4>
+      {% else %}
+      <h4 class="pt-2">
+        <span class="text-secondary">Price ${{ item.item.price }}</span>
+      </h4>
+      {% endif %}
+      <h4 class="pt-2">
+        <span class="text-secondary">Quantity {{ item.quantity }} ps.</span>
+      </h4>
+      <h4 class="pt-2">
+        <span class="text-secondary">Total ${{ item.sum_total_price }}</span>
+      </h4>
+      <div class="cart mt-4 row">
+        <div class="col-md-5 col-sm-12 p-0 mt-3">
+          <a href="{% url 'add-one-item' item.item.slug %}"><span class="p-3 bg-white border rounded-circle"><i class="fas fa-plus"></i></span></a>
+          <a href="{% url 'remove-item-from-cart' item.item.slug %}"><span class="p-3 bg-white border rounded-circle"><i class="fas fa-trash"></i></span></a>
+          <a href="{% url 'remove-one-item' item.item.slug %}"><span class="p-3 bg-white border rounded-circle"><i class="fas fa-minus"></i></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% empty %}
+<div class="container text-center">
+  <div class="features">
+    <p class="text-secondary">
+      Sorry, no items in this list.
+    </p>
+  </div>
+</div>
+
+{% endfor %}
+{% if order_item %}
+
+<div class="container-fluid sofa bg-light">
+  <div class="row">
+    <div class="col-md-6 col-12">
+    </div>
+    <div class="col-md-6 col-12">
+      <h4 class="text-secondary pt-3 pb-3">Total sum ${{ total_sum }}</h4>
+      <div class="pb-5">
+        <button class="border site-btn btn-span bg-primary-color text-white" onclick="window.location.href = '{% url 'create-address' %}';">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Item Section -->
+<div class="container-fluid sofa bg-light">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div class="row box">
+        <div class="col-md-2 p-0 pl-md-3 bg-white offset-1 d-flex flex-md-column flex-sm-row">
+          <div class="py-md-2 py-2 mt-3 bg-white border text-center">
+            <h5 class="primary-color"><strong>125</strong></h5>
+            <em>days</em>
+          </div>
+          <div class="py-md-2 py-2 mt-3 bg-white border text-center">
+            <h5 class="primary-color"><strong>5</strong></h5>
+            <em>Hours</em>
+          </div>
+          <div class="py-md-2 py-2 mt-3 bg-white border text-center">
+            <h5 class="primary-color"><strong>45</strong></h5>
+            <em>Mins</em>
+          </div>
+          <div class="py-md-2 py-2 mt-3 bg-white border text-center">
+            <h5 class="primary-color"><strong>13</strong></h5>
+            <em>Secs</em>
+          </div>
+        </div>
+        <div class="col-md-8 p-0 bg-white">
+          <div class="text-left">
+            <img src="{{ item.image.url }}" alt={{ item.title }} class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 pt-5">
+      <h4 class="text-left pr-1">{{ item.title }}</h4>
+      <div class="col-md-6 pl-1">
+        <p class="text-secondary text-left pt-3">
+          <small>
+            {{ item.description }}
+          </small>
+        </p>
+      </div>
+      <div class="rating lightblue">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      {% if item.discount_price %}
+      <h4 class="pt-2">
+        <small><s class="text-secondary">${{ item.price }}</s></small>
+        <span class="text-color">${{ item.discount_price }}</span>
+      </h4>
+      {% else %}
+      <h4 class="pt-2">
+        <span class="text-color">${{ item.price }}</span>
+      </h4>
+      {% endif %}
+      <div class="cart mt-4 row">
+        <div class="col-md-4 col-sm-12 p-0">
+          <button class="border site-btn btn-span bg-primary-color text-white" onclick="window.location.href = '{% url 'add-item' item.slug %}';">Add to cart</button>
+        </div>
+        <div class="col-md-5 col-sm-12 p-0 mt-3">
+          <span class="p-3 bg-white border rounded-circle"><i class="far fa-heart"></i></span>
+          <span class="p-3 bg-white border rounded-circle"><i class="fas fa-sync-alt"></i></span>
+          <span class="p-3 bg-white border rounded-circle"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- /Item Section -->
+
+{% endblock %}

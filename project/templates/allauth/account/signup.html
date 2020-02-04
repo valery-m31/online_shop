@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='container col-6'>
+  <div class="row">
+    <div class="col-md-4 col-12 text-center"></div>
+    <div class="col-md-4 col-12 text-center" style="height: 150px;">
+      <h2 class="my-md-3 site-title text-secondary">Create Account</h2>
+    </div>
+    <div class="col-md-4 col-12 text-right"></div>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <!-- <div class="row" style="height: 100px;"> -->
+    <div class="col-md-6 col-12 text-center pt-6">
+      <!-- <p class="text-secondary">{{ form.error }}</p> -->
+      {% for key, value in form.errors.items %}
+      <p class="text-secondary">{{ value }}</p>
+      {% endfor %}
+      <div class="row">
+        <div class="col-md-6 col-12 text-center py-1 text-secondary">
+          <p>Username</p>
+        </div>
+        <div class="col-md-3 col-12 text-center">
+          {{ form.username }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 text-center pt-6">
+      <div class="row">
+        <div class="col-md-6 col-12 text-center py-1 text-secondary">
+          <p>Email</p>
+        </div>
+        <div class="col-md-3 col-12 text-center">
+          {{ form.email }}
+        </div>
+
+      </div>
+
+    </div>
+    <!-- </div> -->
+    <!-- <div class="row" style="height: 100px;"> -->
+    <div class="col-md-6 col-12 text-center pt-6">
+      <div class="row">
+        <div class="col-md-6 col-12 text-center py-1 text-secondary">
+          <p>Password</p>
+        </div>
+        <div class="col-md-3 col-12 text-center">
+          {{ form.password1 }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 text-center pt-6">
+      <div class="row">
+        <div class="col-md-6 col-12 text-center py-1 text-secondary">
+          <p>Password (again)</p>
+        </div>
+        <div class="col-md-3 col-12 text-center">
+          {{ form.password2 }}
+        </div>
+
+      </div>
+
+    </div>
+    <!-- </div> -->
+    <div class="row">
+      <div class="col-md-6 col-12 text-right">
+      </div>
+      <div class="col-md-6 col-12 text-center">
+        <button type="submit" class="btn bg-primary-color text-white">Create</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

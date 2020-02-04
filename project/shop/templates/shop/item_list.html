@@ -1,0 +1,153 @@
+{% extends 'shop/base.html' %}
+
+
+{% block content %}
+
+<!-- First Slider -->
+<div class="container-fluid p-0">
+  <div class="site-slider">
+    <div class="slider-one">
+      <div>
+        <img src="../../../../media/assets/item-1.jpg" class="img-fluid" alt="Banner 1">
+      </div>
+      <div>
+        <img src="../../../../media/assets/item-2.jpg" class="img-fluid" alt="Banner 2">
+      </div>
+      <div>
+        <img src="../../../../media/assets/item-3.jpg" class="img-fluid" alt="Banner 3">
+      </div>
+    </div>
+    <div class="slider-btn">
+      <span class="prev position-top">
+        <i class="fas fa-chevron-left"></i>
+      </span>
+      <span class="next position-top right-0">
+        <i class="fas fa-chevron-right"></i>
+      </span>
+    </div>
+
+  </div>
+</div>
+<!-- /First Slider -->
+
+<!-- Items -->
+<div class="container-fluid">
+  <div class="site-slider-three px-md-4">
+    <div class="slider-three row text-center px-4">
+      {% for item in best_items %}
+      <div class="col-md-2 product pt-md-5">
+        <img src="{{ item.image.url }}" class="img-fluid" alt="Image_1">
+        <div class="cart-details">
+          <h6 class="pro-title p-0">{{ item.title }}</h6>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="pro-price py-2">
+            {% if item.discount_price %}
+            <h5>
+              <small><s class="text-secondary">${{ item.price }}</s></small>
+              <span>${{ item.discount_price }}</span>
+            </h5>
+            {% else %}
+            <h5>
+              <span>${{ item.price }}</span>
+            </h5>
+            {% endif %}
+          </div>
+          <div class="cart cart-items mt-4">
+            <button class="border site-btn btn-span" onclick="window.location.href = '{% url 'add-item' item.slug %}';" >Add to Cart</button>
+          </div>
+          <div class="cart cart-items mt-4">
+            <button class="border site-btn btn-span" onclick="window.location.href = '{% url 'item-detail' item.slug %}';">Detail</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="slider-btn">
+      <span class="prev position-top">
+        <i class="fas fa-chevron-left fa-2x text-secondary"></i>
+      </span>
+      <span class="next position-top right-0">
+        <i class="fas fa-chevron-right fa-2x text-secondary"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<!-- /Items -->
+
+<div class="container text-center">
+  <div class="features">
+    <h1>All Products</h1>
+    <p class="text-secondary">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="site-slider-three px-md-4">
+    <div class="three row text-center px-4">
+      {% for item in object_list %}
+      <div class="col-md-3 product pt-md-5">
+        <img src="{{ item.image.url }}" class="img-fluid" alt="Image_1">
+        <div class="cart-details">
+          <h6 class="pro-title p-0">{{ item.title }}</h6>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="pro-price py-2">
+            {% if item.discount_price %}
+            <h5>
+              <small><s class="text-secondary">${{ item.price }}</s></small>
+              <span>${{ item.discount_price }}</span>
+            </h5>
+            {% else %}
+            <h5>
+              <span>${{ item.price }}</span>
+            </h5>
+            {% endif %}
+          </div>
+          <div class="cart mt-4">
+            <button class="border site-btn btn-span" onclick="window.location.href = '{% url 'item-detail' item.slug %}';" >Detail</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-12 text-center my-md-4"></div>
+    <div class="col-md-4 col-12 text-center my-md-4">
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo;</a>
+          <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          {% endif %}
+
+          <span class="current text-secondary">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 text-center my-md-4"></div>
+  </div>
+</div>
+
+{% endblock %}

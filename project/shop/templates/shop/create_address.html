@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container text-center">
+  <div class="features text-secondary">
+    <h1>Address Form</h1>
+  </div>
+</div>
+
+<div class="container-fluid sofa bg-light">
+  <div class="col-md-12 col-sm-4">
+    <form action="." method='post' enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row text-secondary">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 pt-5">
+          <p>{{ form.first_name|as_crispy_field }}</p>
+          <p class="pt-1">{{ form.country|as_crispy_field }}</p>
+          <p class="pt-3">{{ form.zip_code|as_crispy_field }}</p>
+          <p class="pt-1">{{ form.phone|as_crispy_field }}</p>
+        </div>
+        <div class="col-md-3 pt-5">
+          <p>{{ form.last_name|as_crispy_field }}</p>
+          <p class="pt-1">{{ form.city|as_crispy_field }}</p>
+          <p class="pt-1">{{ form.home_address|as_crispy_field }}</p>
+          <p class="pt-1">{{ form.email|as_crispy_field }}</p>
+          <div class="pb-4 pt-4 text-right">
+            <button type="submit" class="border site-btn btn-span bg-primary-color text-white" name="button">Submit</button>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
